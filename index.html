@@ -6,17 +6,78 @@
 
 <h3>Name Cipher-er</h3>
 <p title="Name Ciphering">
-  Type a name into the box below, and hit Submit to have it ciphered three ways (simple, reverse, Kaye)!
+  Type a name into the box below, and hit Submit to have it ciphered three ways (simple, reverse, Kaye), and summed!
 </p>
 <p>Ciphers were found at <a href="http://www.fbrt.org.uk/pages/essays/essay-ciphers.html">this site</a>.</p>
-
-<form>
+<br>
+<form action="" onsubmit="doCipher()">
   Name:<br>
   <input type="text" name="name">
+  <br>
   <br>
   <input type="submit" value="Submit">
   
 </form>
+<br>
+<br>
+
+<p id="whatYouInputted"></p>
+<br>
+<p id="simple"></p>
+<p id="reverse"></p>
+<p id="kaye"></p>
+
+<script type="text/javascript">
+
+  function doCipher(){
+    var simpleCipher = [1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10, 11,
+    12, 13, 14, 15, 16, 17, 18, 19, 19, 20, 21, 22, 23, 24];
+    var reverseCipher = [24, 23, 22, 21, 20, 19, 18, 17, 16, 16,
+    15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 6, 5, 4, 3, 2, 1];
+    var kayeCipher = [27, 28, 29, 30, 31, 32, 33, 34, 35, 35,
+    10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 19, 20, 21, 22, 23, 24];
+    
+    var input = document.getElementById("name");
+    
+    var simple = "";
+    var reverse = "";
+    var kaye = "";
+    
+    var simpleSum = 0;
+    var reverseSum = 0;
+    var kayeSum = 0;
+    
+    input = input.toUpperCase();
+    
+    for(var i = 0; i < input.length; i++){
+      var charCode = input.charCodeAt(i);
+      
+      if(charCode >= 65 && charCode <= 90){
+        simple += simpleCipher[charCode - 65] + "";
+        simpleSum += simpleCipher[charCode - 65];
+        
+        reverse += reverseCipher[charCode - 65] + "";
+        reverseSum += reverseCipher[charCode - 65];
+        
+        kaye += kayeCipher[charCode - 65] + "";
+        kayeSum += kayeCipher[charCode - 65];
+      else{
+          simple += "? ";
+          reverse += "? ";
+          kaye += "? ";
+      }
+    }
+    
+    // what you inputted
+    document.getElementById("whatYouInputted").innerHTML = "You inputted: " + input;
+    
+    // ciphers
+    document.getElementById("simple").innerHTML = "Simple: " + simple + " | Sum: " + simpleSum;
+    document.getElementById("reverse").innerHTML = "Reverse: " + reverse + " | Sum: " + reverseSum;
+    document.getElementById("kaye").innerHTML = "Kaye: " + reverse + " | Sum: " + kayeSum;
+  }
+  
+</script>
 
 </body>
 </html>
