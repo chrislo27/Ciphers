@@ -71,14 +71,14 @@ Name (case insensitive):
         kaye += kayeCipher[charCode - 65] + " ";
         kayeSum += kayeCipher[charCode - 65];
       }else{
-          simple += "? ";
-          reverse += "? ";
-          kaye += "? ";
+          simple += "_ ";
+          reverse += "_ ";
+          kaye += "_ ";
       }
     }
     
     // what you inputted
-    document.getElementById("whatYouInputted").innerHTML = "You inputted: " + input;
+    document.getElementById("whatYouInputted").innerHTML = "You inputted: " + document.getElementById("nameInput").value;
     
     // ciphers
     document.getElementById("simple").innerHTML = "Simple: " + simple + " | Sum: " + simpleSum;
